@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>تفاصيل اليوم التدريبي</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Tajawal', sans-serif;
+        }
+        body {
+            background: #f2f7fc;
+            min-height: 100vh;
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .container {
+            max-width: 600px;
+            width: 100%;
+            background: white;
+            border-radius: 36px;
+            padding: 24px 20px;
+            box-shadow: 0 20px 30px -10px #022b44;
+            border: 1px solid #d3e4f5;
+        }
+        .day-header {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 25px;
+            border-bottom: 3px solid #1f6e9f;
+            padding-bottom: 15px;
+        }
+        .day-badge {
+            background: #1f6e9f;
+            color: white;
+            font-size: 1.6rem;
+            font-weight: 800;
+            padding: 0.4rem 1.4rem;
+            border-radius: 60px;
+        }
+        .day-title {
+            font-size: 1.8rem;
+            color: #0b2f4a;
+            font-weight: 700;
+        }
+        .links-list {
+            list-style: none;
+            margin: 25px 0;
+        }
+        .links-list li {
+            background: #eef5fc;
+            border: 1px solid #b7d3ed;
+            border-radius: 50px;
+            padding: 14px 18px;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .link-text {
+            flex: 1;
+            font-size: 1.1rem;
+            word-break: break-word;
+        }
+        .link-text a {
+            text-decoration: none;
+            color: #104c77;
+            font-weight: 600;
+            border-bottom: 1px dashed #5f9cc0;
+        }
+        .copy-btn {
+            background: white;
+            border: 2px solid #1f6e9f;
+            border-radius: 40px;
+            padding: 8px 16px;
+            font-weight: 600;
+            color: #1f6e9f;
+            cursor: pointer;
+            transition: 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 0.95rem;
+            white-space: nowrap;
+        }
+        .copy-btn:active {
+            background: #1f6e9f;
+            color: white;
+        }
+        .instruction-box {
+            background: #fdebd0;
+            border-right: 6px solid #e67e22;
+            padding: 18px 20px;
+            border-radius: 30px;
+            margin-top: 20px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #78450e;
+        }
+        .instruction-box p {
+            margin: 8px 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        /* لا يوجد تحذير بالعودة */
+    </style>
+</head>
+<body>
+    <div class="container" id="detailsContainer">
+        <!-- يتم التعبئة عبر JS -->
+    </div>
+
+    <script>
+        // بيانات جميع الأيام (تم تعديل اليوم 0 بإضافة رابط واتساب، واليوم 3 تغيير العنوان)
+        const daysData = {
+            0: {
+                name: 'افتتاح التدريب',
+                links: [
+                    { text: '📁 ملف اليوم الافتتاحي', url: 'https://drive.google.com/drive/folders/1gcmWeBh3aVdSlWjq-z6GW3p6JmLCjyOB' },
+                    { text: '🎥 لماذا نحن فائقون (يوتيوب)', url: 'https://youtu.be/4Wa5JporgoQ?si=MC-xRW-7AKoR4cyP' },
+                    { text: '🔗 رابطة البيع المباشر', url: 'https://dsa.org.sa/' },
+                    { text: '📱 قناة الفريق السعودي (واتساب)', url: 'https://whatsapp.com/channel/0029VbCGPUC0lwgktzGLM11X' } // تمت الإضافة
+                ]
+            },
+            1: {
+                name: 'افراغ الكأس',
+                links: [
+                    { text: '📁 فيديوهات اليوم الأول', url: 'https://drive.google.com/drive/folders/1jnNqc8G78qmdB08tFQ8EtSJZZ-0j8tXa' },
+                    { text: '🐦 تغريدة روبرت كيوساكي', url: 'https://x.com/i/status/1996093754273370277' }
+                ]
+            },
+            2: {
+                name: 'الميلونير الفوري',
+                links: [
+                    { text: '📚 كتاب الميلونير الفوري', url: 'https://drive.google.com/drive/folders/1MQFQ4NZ95rjsqVATz-s42r75Mg54BNQr' }
+                ]
+            },
+            3: {
+                name: 'المرتكزات الأربعة', // تم التغيير
+                links: [
+                    { text: '🎬 المقطع الأول - الحلم', url: 'https://drive.google.com/file/d/152QY60UK6IMce7FJBmoTGhF0qehdMtW9/view?usp=drivesdk' },
+                    { text: '🎬 المقطع الثاني - الالتزام', url: 'https://drive.google.com/file/d/1c0mAuStyLTOeB2zvvIiUDfBKWQIhZVVz/view?usp=drivesdk' },
+                    { text: '🎬 المقطع الثالث - الاستشارة', url: 'https://drive.google.com/file/d/1biDgCaMhYaw_Rd36nPPGhqFqmLjSN2t_/view?usp=drivesdk' },
+                    { text: '🎬 المقطع الرابع - الاستنساخ', url: 'https://drive.google.com/file/d/1tcCYpRD-NgnqyvgAnV64Yu3NKdJ_7JGJ/view?usp=drivesdk' }
+                ]
+            },
+            4: {
+                name: 'تغيير نمط التفكير',
+                links: [
+                    { text: '📹 اليوم الرابع (فيديو)', url: 'https://drive.google.com/file/d/1iJuihLxL2z_sD0TEotXYVwkgMFppuApx/view?usp=drivesdk' }
+                ]
+            }
+        };
+
+        // التوجيهات الثابتة
+        const instructions = [
+            '📝 مهم جداً كتابة جميع ملاحظاتك لمناقشتها بالجلسة',
+            '📆 فيدباك يومي بعد جلسة المناقشة'
+        ];
+
+        // استخراج رقم اليوم من الرابط
+        const params = new URLSearchParams(window.location.search);
+        const dayParam = params.get('day');
+        const dayNumber = dayParam !== null ? parseInt(dayParam, 10) : null;
+
+        if (dayNumber === null || isNaN(dayNumber) || !daysData.hasOwnProperty(dayNumber)) {
+            document.getElementById('detailsContainer').innerHTML = `
+                <div style="text-align: center; padding: 2rem;">
+                    <h2>❌ اليوم غير موجود</h2>
+                    <p style="margin-top: 1rem;">الرجاء العودة للصفحة الرئيسية واختيار يوم صحيح.</p>
+                </div>
+            `;
+        } else {
+            const day = daysData[dayNumber];
+            let linksHtml = '';
+            day.links.forEach(link => {
+                linksHtml += `
+                    <li>
+                        <span class="link-text"><a href="${link.url}" class="replace-link">${link.text}</a></span>
+                        <button class="copy-btn" data-copy="${link.url}">📋 نسخ الرابط</button>
+                    </li>
+                `;
+            });
+
+            let instructionsHtml = '';
+            instructions.forEach(text => {
+                instructionsHtml += `<p><span>📌</span> ${text}</p>`;
+            });
+
+            const fullHtml = `
+                <div class="day-header">
+                    <span class="day-badge">اليوم ${dayNumber}</span>
+                    <span class="day-title">${day.name}</span>
+                </div>
+                <ul class="links-list">
+                    ${linksHtml}
+                </ul>
+                <div class="instruction-box">
+                    ${instructionsHtml}
+                </div>
+            `;
+            document.getElementById('detailsContainer').innerHTML = fullHtml;
+
+            // وظيفة نسخ الروابط
+            document.querySelectorAll('.copy-btn').forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    const url = this.getAttribute('data-copy');
+                    navigator.clipboard.writeText(url).then(() => {
+                        const original = this.innerText;
+                        this.innerText = '✅ تم';
+                        this.style.background = '#20805c';
+                        this.style.color = 'white';
+                        this.style.borderColor = '#0c543a';
+                        setTimeout(() => {
+                            this.innerText = original;
+                            this.style.background = '';
+                            this.style.color = '';
+                            this.style.borderColor = '';
+                        }, 1500);
+                    }).catch(() => alert('تعذر النسخ'));
+                });
+            });
+
+            // جعل جميع الروابط تستخدم replace لعدم الرجوع
+            document.querySelectorAll('.replace-link').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const href = this.getAttribute('href');
+                    if (href) window.location.replace(href);
+                });
+            });
+        }
+    </script>
+</body>
+</html>

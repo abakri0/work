@@ -2,137 +2,212 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-    <title>تفاصيل اليوم التدريبي</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <title>تفاصيل اليوم | فريق الفرسان</title>
     <style>
+        :root {
+            --primary: #d33427;
+            --primary-dark: #89122a;
+            --bg-light: #fef6f5;
+            --text-dark: #1e1e2a;
+            --instruction-bg: #ffefe5;
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Tajawal', sans-serif;
         }
+
         body {
-            background: #f2f7fc;
+            background: var(--bg-light);
             min-height: 100vh;
             padding: 16px;
             display: flex;
             flex-direction: column;
             align-items: center;
         }
+
         .container {
-            max-width: 600px;
+            max-width: 700px;
             width: 100%;
             background: white;
-            border-radius: 36px;
-            padding: 24px 20px;
-            box-shadow: 0 20px 30px -10px #022b44;
-            border: 1px solid #d3e4f5;
+            border-radius: 48px;
+            padding: 28px 20px;
+            box-shadow: 0 25px 40px -15px rgba(137, 18, 42, 0.3);
+            border: 1px solid rgba(211, 52, 39, 0.2);
         }
+
         .day-header {
             display: flex;
             flex-wrap: wrap;
             align-items: center;
-            gap: 12px;
+            gap: 12px 16px;
             margin-bottom: 25px;
-            border-bottom: 3px solid #1f6e9f;
-            padding-bottom: 15px;
+            border-bottom: 3px solid var(--primary);
+            padding-bottom: 20px;
         }
+
         .day-badge {
-            background: #1f6e9f;
+            background: var(--primary);
             color: white;
-            font-size: 1.6rem;
+            font-size: 1.7rem;
             font-weight: 800;
-            padding: 0.4rem 1.4rem;
+            padding: 0.5rem 1.5rem;
             border-radius: 60px;
+            box-shadow: 0 4px 0 var(--primary-dark);
         }
+
         .day-title {
-            font-size: 1.8rem;
-            color: #0b2f4a;
-            font-weight: 700;
+            font-size: 1.9rem;
+            color: var(--primary-dark);
+            font-weight: 800;
+            line-height: 1.2;
         }
+
         .links-list {
             list-style: none;
-            margin: 25px 0;
+            margin: 30px 0;
         }
+
         .links-list li {
-            background: #eef5fc;
-            border: 1px solid #b7d3ed;
-            border-radius: 50px;
-            padding: 14px 18px;
-            margin-bottom: 12px;
+            background: #fef1ee;
+            border: 1px solid var(--primary);
+            border-radius: 60px;
+            padding: 14px 20px;
+            margin-bottom: 14px;
             display: flex;
             align-items: center;
             flex-wrap: wrap;
-            gap: 10px;
+            gap: 12px;
+            transition: 0.2s;
         }
+
+        .links-list li:hover {
+            background: #ffe7e2;
+        }
+
         .link-text {
             flex: 1;
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             word-break: break-word;
+            color: var(--primary-dark);
+            font-weight: 600;
         }
+
         .link-text a {
             text-decoration: none;
-            color: #104c77;
-            font-weight: 600;
-            border-bottom: 1px dashed #5f9cc0;
+            color: var(--primary-dark);
+            font-weight: 700;
+            border-bottom: 2px dotted var(--primary);
+            padding-bottom: 2px;
         }
+
+        .link-text a:hover {
+            color: var(--primary);
+            border-bottom: 2px solid var(--primary);
+        }
+
         .copy-btn {
             background: white;
-            border: 2px solid #1f6e9f;
+            border: 2px solid var(--primary);
             border-radius: 40px;
-            padding: 8px 16px;
-            font-weight: 600;
-            color: #1f6e9f;
+            padding: 10px 20px;
+            font-weight: 700;
+            color: var(--primary);
             cursor: pointer;
             transition: 0.2s;
             display: inline-flex;
             align-items: center;
-            gap: 5px;
-            font-size: 0.95rem;
+            gap: 6px;
+            font-size: 1rem;
             white-space: nowrap;
         }
+
         .copy-btn:active {
-            background: #1f6e9f;
+            background: var(--primary);
             color: white;
+            transform: scale(0.95);
         }
+
         .instruction-box {
-            background: #fdebd0;
-            border-right: 6px solid #e67e22;
-            padding: 18px 20px;
-            border-radius: 30px;
-            margin-top: 20px;
-            font-size: 1.1rem;
+            background: var(--instruction-bg);
+            border-right: 8px solid var(--primary-dark);
+            padding: 20px 24px;
+            border-radius: 40px;
+            margin-top: 30px;
+            font-size: 1.2rem;
             font-weight: 600;
-            color: #78450e;
+            color: var(--primary-dark);
+            box-shadow: 0 5px 0 #bc2f23;
         }
+
         .instruction-box p {
-            margin: 8px 0;
+            margin: 10px 0;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
         }
-        /* لا يوجد تحذير بالعودة */
+
+        .back-home {
+            display: inline-block;
+            margin-top: 25px;
+            background: var(--primary);
+            color: white;
+            text-decoration: none;
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.2rem;
+            border: 2px solid var(--primary-dark);
+            transition: 0.2s;
+            text-align: center;
+        }
+
+        .back-home:hover {
+            background: var(--primary-dark);
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 20px 16px;
+            }
+            .day-badge {
+                font-size: 1.4rem;
+                padding: 0.4rem 1rem;
+            }
+            .day-title {
+                font-size: 1.6rem;
+            }
+            .link-text {
+                font-size: 1rem;
+            }
+        }
     </style>
 </head>
 <body>
-    <div class="container" id="detailsContainer">
-        <!-- يتم التعبئة عبر JS -->
+    <div>
+            <img src="./logo.png" style="width: 50px;"/>
+        </div>
+    <div class="container" id="detailsContainer"></div>
+    <div>
+        
     </div>
-
     <script>
-        // بيانات جميع الأيام (تم تعديل اليوم 0 بإضافة رابط واتساب، واليوم 3 تغيير العنوان)
+        // بيانات الأيام مع إضافة رابط الواتساب لليوم 0
         const daysData = {
             0: {
-                name: 'افتتاح التدريب',
+                name: 'الافتتاح',
                 links: [
                     { text: '📁 ملف اليوم الافتتاحي', url: 'https://drive.google.com/drive/folders/1gcmWeBh3aVdSlWjq-z6GW3p6JmLCjyOB' },
-                    { text: '🎥 لماذا نحن فائقون (يوتيوب)', url: 'https://youtu.be/4Wa5JporgoQ?si=MC-xRW-7AKoR4cyP' },
-                    { text: '🔗 رابطة البيع المباشر السعودية', url: 'https://dsa.org.sa/' },
-                    { text: '📱 قناة الفريق السعودي (واتساب)', url: 'https://whatsapp.com/channel/0029VbCGPUC0lwgktzGLM11X' } // تمت الإضافة
+                    { text: '🎥 لماذا نحن فائقون', url: 'https://youtu.be/4Wa5JporgoQ?si=MC-xRW-7AKoR4cyP' },
+                    { text: '🔗 رابطة البيع المباشر', url: 'https://dsa.org.sa/' },
+                    { text: '📱 قناة الفرسان (واتساب)', url: 'https://whatsapp.com/channel/0029VbCGPUC0lwgktzGLM11X' }
                 ]
             },
             1: {
-                name: 'افراغ الكأس',
+                name: 'التدريب',
                 links: [
                     { text: '📁 فيديوهات اليوم الأول', url: 'https://drive.google.com/drive/folders/1jnNqc8G78qmdB08tFQ8EtSJZZ-0j8tXa' },
                     { text: '🐦 تغريدة روبرت كيوساكي', url: 'https://x.com/i/status/1996093754273370277' }
@@ -145,40 +220,38 @@
                 ]
             },
             3: {
-                name: 'المرتكزات الأربعة', // تم التغيير
+                name: 'المرتكزات الأربعة',
                 links: [
-                    { text: '🎬 المقطع الأول - الحلم', url: 'https://drive.google.com/file/d/152QY60UK6IMce7FJBmoTGhF0qehdMtW9/view?usp=drivesdk' },
-                    { text: '🎬 المقطع الثاني - الالتزام', url: 'https://drive.google.com/file/d/1c0mAuStyLTOeB2zvvIiUDfBKWQIhZVVz/view?usp=drivesdk' },
-                    { text: '🎬 المقطع الثالث - الاستشارة', url: 'https://drive.google.com/file/d/1biDgCaMhYaw_Rd36nPPGhqFqmLjSN2t_/view?usp=drivesdk' },
-                    { text: '🎬 المقطع الرابع - الاستنساخ', url: 'https://drive.google.com/file/d/1tcCYpRD-NgnqyvgAnV64Yu3NKdJ_7JGJ/view?usp=drivesdk' },
-                    { text: '🎬 من حرك قطعة الجبن الخاصة بي', url: 'https://www.youtube.com/watch?v=-wPHKmFRThY' }
-
+                    { text: '🎬 الحلم', url: 'https://drive.google.com/file/d/152QY60UK6IMce7FJBmoTGhF0qehdMtW9/view?usp=drivesdk' },
+                    { text: '🎬 الالتزام', url: 'https://drive.google.com/file/d/1c0mAuStyLTOeB2zvvIiUDfBKWQIhZVVz/view?usp=drivesdk' },
+                    { text: '🎬 الاستشارة', url: 'https://drive.google.com/file/d/1biDgCaMhYaw_Rd36nPPGhqFqmLjSN2t_/view?usp=drivesdk' },
+                    { text: '🎬 الاستنساخ', url: 'https://drive.google.com/file/d/1tcCYpRD-NgnqyvgAnV64Yu3NKdJ_7JGJ/view?usp=drivesdk' }
                 ]
             },
             4: {
-                name: 'تغيير نمط التفكير',
+                name: 'الختام',
                 links: [
-                    { text: '📹 اليوم الرابع (فيديو)', url: 'https://drive.google.com/file/d/1iJuihLxL2z_sD0TEotXYVwkgMFppuApx/view?usp=drivesdk' }
+                    { text: '📹 اليوم الرابع', url: 'https://drive.google.com/file/d/1iJuihLxL2z_sD0TEotXYVwkgMFppuApx/view?usp=drivesdk' }
                 ]
             }
         };
 
-        // التوجيهات الثابتة
         const instructions = [
             '📝 مهم جداً كتابة جميع ملاحظاتك لمناقشتها بالجلسة',
             '📆 فيدباك يومي بعد جلسة المناقشة'
         ];
 
-        // استخراج رقم اليوم من الرابط
         const params = new URLSearchParams(window.location.search);
         const dayParam = params.get('day');
         const dayNumber = dayParam !== null ? parseInt(dayParam, 10) : null;
 
-        if (dayNumber === null || isNaN(dayNumber) || !daysData.hasOwnProperty(dayNumber)) {
-            document.getElementById('detailsContainer').innerHTML = `
+        const container = document.getElementById('detailsContainer');
+
+        if (dayNumber === null || isNaN(dayNumber) || !daysData[dayNumber]) {
+            container.innerHTML = `
                 <div style="text-align: center; padding: 2rem;">
-                    <h2>❌ اليوم غير موجود</h2>
-                    <p style="margin-top: 1rem;">الرجاء العودة للصفحة الرئيسية واختيار يوم صحيح.</p>
+                    <h2 style="color: var(--primary-dark);">❌ اليوم غير موجود</h2>
+                    <a href="index.html" class="back-home" style="margin-top:2rem;">العودة للرئيسية</a>
                 </div>
             `;
         } else {
@@ -187,36 +260,31 @@
             day.links.forEach(link => {
                 linksHtml += `
                     <li>
-                        <span class="link-text"><a href="${link.url}" class="replace-link">${link.text}</a></span>
+                        <span class="link-text"><a href="${link.url}" target="_blank" rel="noopener">${link.text}</a></span>
                         <button class="copy-btn" data-copy="${link.url}">📋 نسخ الرابط</button>
                     </li>
                 `;
             });
 
-            let instructionsHtml = '';
+            let instrHtml = '';
             instructions.forEach(text => {
-                instructionsHtml += `<p><span>📌</span> ${text}</p>`;
+                instrHtml += `<p><span>🔴</span> ${text}</p>`;
             });
 
-            const fullHtml = `
+            container.innerHTML = `
                 <div class="day-header">
                     <span class="day-badge">اليوم ${dayNumber}</span>
                     <span class="day-title">${day.name}</span>
                 </div>
-                <ul class="links-list">
-                    ${linksHtml}
-                </ul>
-                <div class="instruction-box">
-                    ${instructionsHtml}
-                </div>
+                <ul class="links-list">${linksHtml}</ul>
+                <div class="instruction-box">${instrHtml}</div>
             `;
-            document.getElementById('detailsContainer').innerHTML = fullHtml;
 
-            // وظيفة نسخ الروابط
+            // أزرار النسخ
             document.querySelectorAll('.copy-btn').forEach(btn => {
                 btn.addEventListener('click', function(e) {
                     e.stopPropagation();
-                    const url = this.getAttribute('data-copy');
+                    const url = this.dataset.copy;
                     navigator.clipboard.writeText(url).then(() => {
                         const original = this.innerText;
                         this.innerText = '✅ تم';
@@ -230,15 +298,6 @@
                             this.style.borderColor = '';
                         }, 1500);
                     }).catch(() => alert('تعذر النسخ'));
-                });
-            });
-
-            // جعل جميع الروابط تستخدم replace لعدم الرجوع
-            document.querySelectorAll('.replace-link').forEach(link => {
-                link.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const href = this.getAttribute('href');
-                    if (href) window.location.replace(href);
                 });
             });
         }
